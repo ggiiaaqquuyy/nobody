@@ -284,3 +284,27 @@ body {
     }
 
 }
+.cake-message {
+    text-align: center;
+}
+
+.cake {
+    font-size: 55px;
+}
+
+.candle-row {
+    margin-top: -5px;
+    font-size: 22px;
+    letter-spacing: -3px;
+    transition: 0.5s ease;
+}
+
+.candle {
+    display: inline-block;
+    transition: 0.5s ease;
+}
+
+.candles-out .candle {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.7);
+}

@@ -15,21 +15,68 @@ function wait(delay = 2000) {
     });
 }
 
+
+// ========================================
+// AUDIO
+// ========================================
+
 function addAudio(src) {
+
     const wrapper = document.createElement("div");
-    wrapper.classList.add("message", "them", "music-message");
+
+    wrapper.classList.add(
+        "message",
+        "them",
+        "music-message"
+    );
 
     const audio = document.createElement("audio");
+
     audio.src = src;
     audio.controls = true;
+    audio.playsInline = true;
     audio.classList.add("chat-audio");
 
     wrapper.appendChild(audio);
+
     chatBox.appendChild(wrapper);
+
     chatBox.scrollTop = chatBox.scrollHeight;
 
     return audio;
 }
+
+
+// ========================================
+// VIDEO
+// ========================================
+
+function addVideo(src) {
+
+    const wrapper = document.createElement("div");
+
+    wrapper.classList.add(
+        "message",
+        "them",
+        "video-message"
+    );
+
+    const video = document.createElement("video");
+
+    video.src = src;
+    video.controls = true;
+    video.playsInline = true;
+    video.classList.add("chat-video");
+
+    wrapper.appendChild(video);
+
+    chatBox.appendChild(wrapper);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    return video;
+}
+
 
 // ========================================
 // THÊM MESSAGE
@@ -39,7 +86,10 @@ function addMessage(text, sender) {
 
     const message = document.createElement("div");
 
-    message.classList.add("message", sender);
+    message.classList.add(
+        "message",
+        sender
+    );
 
     message.innerText = text;
 
@@ -58,7 +108,10 @@ async function botMessage(text) {
 
     await wait(2000);
 
-    addMessage(text, "them");
+    addMessage(
+        text,
+        "them"
+    );
 }
 
 
@@ -89,43 +142,6 @@ async function typing(delay = 1000) {
 
 
 // ========================================
-// VIDEO
-// ========================================
-
-function addVideo(src) {
-
-    const wrapper = document.createElement("div");
-
-    wrapper.classList.add(
-        "message",
-        "them",
-        "video-message"
-    );
-
-
-    const video = document.createElement("video");
-
-    video.src = src;
-
-    video.controls = true;
-
-    video.playsInline = true;
-
-    video.classList.add("chat-video");
-
-
-    wrapper.appendChild(video);
-
-    chatBox.appendChild(wrapper);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-
-    return video;
-}
-
-
-// ========================================
 // BÁNH
 // ========================================
 
@@ -139,25 +155,27 @@ function addCake() {
         "cake-message"
     );
 
-
     wrapper.innerHTML = `
 
         <div class="cake">
             🎂
         </div>
 
-        <div class="candles" id="candles">
-            🕯️ 🕯️ 🕯️
+        <div class="candle-row" id="candles">
+            <span class="candle">🕯️</span>
+            <span class="candle">🕯️</span>
+            <span class="candle">🕯️</span>
+            <span class="candle">🕯️</span>
+            <span class="candle">🕯️</span>
         </div>
 
     `;
 
-
     chatBox.appendChild(wrapper);
 
-    chatBox.scrollTop = chatBox.scrollHeight;
+    chatBox.scrollTop =
+        chatBox.scrollHeight;
 }
-
 
 // ========================================
 // THỔI NẾN
@@ -172,21 +190,21 @@ async function blowCandles() {
         return;
     }
 
-
-    candles.innerText =
-        "✨ ✨ ✨";
-
+    candles.classList.add("candles-out");
 
     await wait(1000);
 
-    await botMessage("yayyyy 🎉");
+    await botMessage(
+        "yayyyy 🎉"
+    );
 
-    await botMessage("wish made ✨");
+    await botMessage(
+        "wish made ✨"
+    );
 
     await botMessage(
         "mong là điều ước của cậu sẽ thành sự thật nhé ❤️"
     );
-
 
     await wait(2500);
 
@@ -202,6 +220,7 @@ async function showLetter() {
 
     await typing(1000);
 
+
     addMessage(
         "à ",
         "them"
@@ -209,6 +228,7 @@ async function showLetter() {
 
 
     await wait(2000);
+
 
     addMessage(
         "còn cái này nữa",
@@ -241,14 +261,33 @@ async function showLetter() {
             <h3>
                 Một điều cuối...
             </h3>
-            <p> Nếu cậu đã đọc đến đây thì... </p>
-            <p> chắc là món quà này cũng đến được với cậu rồi nhỉ. </p>
-            <p> Mình chẳng biết phải nói những điều này thế nào cho thật hay, nên chỉ muốn cậu biết rằng mình thật sự rất vui vì vẫn ở đây, trong một ngày, đặc biệt hơn mọi ngày, của cậu. </p>
-            <p> Cảm ơn cậu vì đã luôn là chính mình, vì những điều cậu làm, những điều cậu yêu, và vì đã khiến mình có thêm một lý do để mỉm cười mỗi ngày. </p>
-            <p> Mình chúc cậu tuổi mới thật bình yên, và trên hành trình phía trước, mong cậu vẫn sẽ luôn được làm những điều mình yêu thích. </p>
-            <p> Và nếu có lúc nào cậu quên mất rằng mình đáng được yêu thương đến thế nào... thì hãy nhớ rằng có một người vẫn luôn chờ cậu về sau cánh cửa ngoài kia. ❤️ </p>
+
+            <p>
+                Nếu cậu đã đọc đến đây thì...
+            </p>
+
+            <p>
+                chắc là món quà này cũng đến được với cậu rồi nhỉ.
+            </p>
+
+            <p>
+                Mình chẳng biết phải nói những điều này thế nào cho thật hay, nên chỉ muốn cậu biết rằng mình thật sự rất vui vì vẫn ở đây, trong một ngày, đặc biệt hơn mọi ngày, của cậu.
+            </p>
+
+            <p>
+                Cảm ơn cậu vì đã luôn là chính mình, vì những điều cậu làm, những điều cậu yêu, và vì đã khiến mình có thêm một lý do để mỉm cười mỗi ngày.
+            </p>
+
+            <p>
+                Mình chúc cậu tuổi mới thật bình yên, và trên hành trình phía trước, mong cậu vẫn sẽ luôn được làm những điều mình yêu thích.
+            </p>
+
+            <p>
+                Và nếu có lúc nào cậu quên mất rằng mình đáng được yêu thương đến thế nào... thì hãy nhớ rằng có một người vẫn luôn chờ cậu về sau cánh cửa ngoài kia. ❤️
+            </p>
+
             <div class="letter-sign">
-                — nobody
+                _nobody
             </div>
 
         </div>
@@ -273,7 +312,7 @@ async function showLetter() {
 
 
 // ========================================
-// SAU VIDEO → PHẦN ƯỚC
+// SAU AUDIO → PHẦN ƯỚC
 // ========================================
 
 async function birthdayWishFlow() {
@@ -327,6 +366,7 @@ async function handleAnswer(text) {
 
         await typing(1000);
 
+
         addMessage(
             "hôm nay của cậu thế nào?",
             "them"
@@ -335,10 +375,12 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "có gì vui honggg?",
             "them"
         );
+
 
         return;
     }
@@ -357,6 +399,7 @@ async function handleAnswer(text) {
 
         await typing(1000);
 
+
         addMessage(
             "à mà...",
             "them"
@@ -364,6 +407,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "hôm nay là ngày mấy nhỉ",
@@ -373,10 +417,12 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "dạo này mình bận quá, không để ý luôn",
             "them"
         );
+
 
         return;
     }
@@ -395,6 +441,7 @@ async function handleAnswer(text) {
 
         await typing(1000);
 
+
         addMessage(
             "Ê khoan...",
             "them"
@@ -402,6 +449,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "Hôm nay 16/9 là sinh nhật của cậu mà??? 😭",
@@ -411,10 +459,12 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "Huhu mình quên mất luôn á 😭😭",
             "them"
         );
+
 
         return;
     }
@@ -433,6 +483,7 @@ async function handleAnswer(text) {
 
         await typing(1000);
 
+
         addMessage(
             "...",
             "them"
@@ -440,6 +491,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "thôi chết rồi",
@@ -449,6 +501,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "tệ ghê đã quên còn để cậu nhắc nữa",
             "them"
@@ -456,6 +509,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "òmm",
@@ -465,6 +519,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "khoan",
             "them"
@@ -472,6 +527,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "à mà hình như mình vẫn còn kịp làm gì đó á",
@@ -481,6 +537,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "không nói đâu :)))",
             "them"
@@ -488,6 +545,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "đợi xíu ",
@@ -522,6 +580,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "đây là secret... bạn chỉ có được nó khi liên lạc với chủ của mình, nhớ là phải đúng địa chỉ đó nha",
             "them"
@@ -529,6 +588,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "nhưng mà...",
@@ -538,6 +598,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "một món thì hơi ít khomm",
             "them"
@@ -545,6 +606,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "đợi mình tí nha",
@@ -567,6 +629,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "mà sinh nhật thì...",
             "them"
@@ -574,6 +637,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "không thể thiếu cái này được 🎂",
@@ -589,6 +653,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "có bánh rồi nè",
             "them"
@@ -597,6 +662,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "giờ thì...",
             "them"
@@ -604,6 +670,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "mình cùng hát chúc mừng sinh nhật nhaaa",
@@ -616,6 +683,7 @@ async function handleAnswer(text) {
         // ====================================
 
         step = 5;
+
 
         return;
     }
@@ -634,6 +702,7 @@ async function handleAnswer(text) {
 
         await typing(1000);
 
+
         addMessage(
             "okayyy bắt đầu nheee 🎵",
             "them"
@@ -643,38 +712,28 @@ async function handleAnswer(text) {
         await wait(2000);
 
 
-        const audio = addAudio(
-                    "assets/audio/song.mp3"
-                    );
+        // ====================================
+        // PHÁT AUDIO
+        // ====================================
 
-        audio.play().catch(() => {});
-        audio.addEventListener("ended", birthdayWishFlow);
+        const audio = addAudio(
+            "song.mp3"
+        );
 
 
         // thử tự phát
-        video.play().catch(() => {});
+        audio.play().catch(() => {});
 
 
         // ====================================
-        // VIDEO KẾT THÚC
+        // AUDIO KẾT THÚC
         // ====================================
 
-        video.addEventListener(
+        audio.addEventListener(
             "ended",
             birthdayWishFlow
         );
 
-
-        // fallback nếu video không kết thúc
-        setTimeout(() => {
-
-            if (step === 6) {
-
-                birthdayWishFlow();
-
-            }
-
-        }, 15000);
 
         return;
     }
@@ -683,7 +742,7 @@ async function handleAnswer(text) {
 
     // ====================================
     // STEP 7
-    // SAU "ƯỚC XONG CHƯA?"
+    // SAU PHẦN ƯỚC
     // ====================================
 
     if (step === 7) {
@@ -693,6 +752,7 @@ async function handleAnswer(text) {
 
         await typing(1000);
 
+
         addMessage(
             "Rồi thì...",
             "them"
@@ -700,6 +760,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "3...",
@@ -709,6 +770,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "2...",
             "them"
@@ -716,6 +778,7 @@ async function handleAnswer(text) {
 
 
         await wait(2000);
+
 
         addMessage(
             "1...",
@@ -725,6 +788,7 @@ async function handleAnswer(text) {
 
         await wait(2000);
 
+
         addMessage(
             "thổi nến thoai",
             "them"
@@ -733,7 +797,9 @@ async function handleAnswer(text) {
 
         await wait(1500);
 
+
         blowCandles();
+
 
         return;
     }
