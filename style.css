@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 203, 86, 0.20),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(255, 126, 126, 0.15),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(255, 162, 89, 0.12),
+            transparent 20%
+        ),
+        #FFF7E8;
+}
+
+
+/* =========================
+   CHAT CONTAINER
+========================= */
+
+.chat-container {
+    width: 390px;
+    height: 680px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 15px 40px rgba(255, 126, 126, 0.25);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.chat-header {
+    height: 75px;
+
+    background: #FFCB56;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    padding: 12px 18px;
+
+    gap: 12px;
+}
+
+
+.avatar {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    border: 2px solid white;
+}
+
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.profile h2 {
+    font-size: 17px;
+
+    margin-bottom: 3px;
+}
+
+
+.profile span {
+    font-size: 12px;
+
+    opacity: 0.85;
+}
+
+
+/* =========================
+   CHAT AREA
+========================= */
+
+.chat-box {
+    flex: 1;
+
+    padding: 20px 15px;
+
+    overflow-y: auto;
+
+    background: #FFF9E8;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    max-width: 75%;
+
+    padding: 10px 14px;
+
+    border-radius: 18px;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+
+    word-wrap: break-word;
+
+    animation: messageAppear 0.25s ease;
+}
+
+
+/* Người bên kia */
+
+.message.them {
+    align-self: flex-start;
+
+    background: #FFEDB9;
+
+    color: #5A4630;
+
+    border-bottom-left-radius: 5px;
+}
+
+
+/* Người dùng */
+
+.message.me {
+    align-self: flex-end;
+
+    background: #FFA259;
+
+    color: white;
+
+    border-bottom-right-radius: 5px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.chat-input {
+    min-height: 65px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    background: white;
+
+    border-top: 1px solid #FFE8B0;
+}
+
+
+#message-input {
+    flex: 1;
+
+    height: 43px;
+
+    border: 1px solid #FFCB56;
+
+    border-radius: 22px;
+
+    padding: 0 16px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    color: #5A4630;
+}
+
+
+#message-input:focus {
+    border-color: #FFA259;
+}
+
+
+#send-btn {
+    width: 43px;
+    height: 43px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #FF7E7E;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+#send-btn:hover {
+    transform: scale(1.05);
+
+    background: #FF6B6B;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    body {
+        background: white;
+    }
+
+    .chat-container {
+        width: 100%;
+        height: 100vh;
+
+        border-radius: 0;
+
+        box-shadow: none;
+    }
+
+}
