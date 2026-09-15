@@ -15,6 +15,21 @@ function wait(delay = 2000) {
     });
 }
 
+function addAudio(src) {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("message", "them", "music-message");
+
+    const audio = document.createElement("audio");
+    audio.src = src;
+    audio.controls = true;
+    audio.classList.add("chat-audio");
+
+    wrapper.appendChild(audio);
+    chatBox.appendChild(wrapper);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    return audio;
+}
 
 // ========================================
 // THÊM MESSAGE
@@ -164,12 +179,12 @@ async function blowCandles() {
 
     await wait(1000);
 
-    await botMessage("Yayyyy 🎉");
+    await botMessage("yayyyy 🎉");
 
-    await botMessage("Wish made. ✨");
+    await botMessage("wish made ✨");
 
     await botMessage(
-        "Mong điều ước của cậu sẽ thành sự thật nhé."
+        "mong là điều ước của cậu sẽ thành sự thật nhé ❤️"
     );
 
 
@@ -188,7 +203,7 @@ async function showLetter() {
     await typing(1000);
 
     addMessage(
-        "À mà...",
+        "à ",
         "them"
     );
 
@@ -196,7 +211,7 @@ async function showLetter() {
     await wait(2000);
 
     addMessage(
-        "Còn cái này nữa.",
+        "còn cái này nữa",
         "them"
     );
 
@@ -224,25 +239,14 @@ async function showLetter() {
             </div>
 
             <h3>
-                One last thing...
+                Một điều cuối...
             </h3>
-
-            <p>
-                Happy Birthday! 🎂
-            </p>
-
-            <p>
-                Mong rằng hôm nay sẽ là
-                một ngày thật vui đối với cậu.
-            </p>
-
-            <p>
-                Và mong rằng khi nhìn lại
-                ngày hôm nay, cậu sẽ nhớ rằng
-                đã có người rất vui vì được
-                ở bên cậu trong ngày đặc biệt này. ❤️
-            </p>
-
+            <p> Nếu cậu đã đọc đến đây thì... </p>
+            <p> chắc là món quà này cũng đến được với cậu rồi nhỉ. </p>
+            <p> Mình chẳng biết phải nói những điều này thế nào cho thật hay, nên chỉ muốn cậu biết rằng mình thật sự rất vui vì vẫn ở đây, trong một ngày, đặc biệt hơn mọi ngày, của cậu. </p>
+            <p> Cảm ơn cậu vì đã luôn là chính mình, vì những điều cậu làm, những điều cậu yêu, và vì đã khiến mình có thêm một lý do để mỉm cười mỗi ngày. </p>
+            <p> Mình chúc cậu tuổi mới thật bình yên, và trên hành trình phía trước, mong cậu vẫn sẽ luôn được làm những điều mình yêu thích. </p>
+            <p> Và nếu có lúc nào cậu quên mất rằng mình đáng được yêu thương đến thế nào... thì hãy nhớ rằng có một người vẫn luôn chờ cậu về sau cánh cửa ngoài kia. ❤️ </p>
             <div class="letter-sign">
                 — nobody
             </div>
@@ -262,7 +266,7 @@ async function showLetter() {
 
 
     addMessage(
-        "Happy Birthday 🎂❤️",
+        "chúc mừng sinh nhật nhenn 🎂❤️",
         "them"
     );
 }
@@ -284,27 +288,22 @@ async function birthdayWishFlow() {
 
 
     await botMessage(
-        "Xong rồi đó. 😌"
+        "yayyyy"
     );
 
 
     await botMessage(
-        "Bây giờ đến phần quan trọng nhất."
+        "bây giờ đến phần quan trọng nhất"
     );
 
 
     await botMessage(
-        "Nhắm mắt lại đi."
+        "nhắm mắt lại"
     );
 
 
     await botMessage(
-        "Và ước một điều gì đó thật đẹp nhé. ✨"
-    );
-
-
-    await botMessage(
-        "Ước xong chưa?"
+        "và ước một điều gì đó thật đẹp đi"
     );
 }
 
@@ -329,7 +328,7 @@ async function handleAnswer(text) {
         await typing(1000);
 
         addMessage(
-            "Hôm nay của cậu thế nào?",
+            "hôm nay của cậu thế nào?",
             "them"
         );
 
@@ -337,7 +336,7 @@ async function handleAnswer(text) {
         await wait(2000);
 
         addMessage(
-            "Có gì vui honggg?",
+            "có gì vui honggg?",
             "them"
         );
 
@@ -359,7 +358,7 @@ async function handleAnswer(text) {
         await typing(1000);
 
         addMessage(
-            "À mà...",
+            "à mà...",
             "them"
         );
 
@@ -367,7 +366,7 @@ async function handleAnswer(text) {
         await wait(2000);
 
         addMessage(
-            "Hôm nay là ngày mấy nhỉ",
+            "hôm nay là ngày mấy nhỉ",
             "them"
         );
 
@@ -375,7 +374,7 @@ async function handleAnswer(text) {
         await wait(2000);
 
         addMessage(
-            "Dạo này mình bận quá, không để ý luôn.",
+            "dạo này mình bận quá, không để ý luôn",
             "them"
         );
 
@@ -644,10 +643,12 @@ async function handleAnswer(text) {
         await wait(2000);
 
 
-        const video =
-            addVideo(
-                "assets/video/birthday.mp4"
-            );
+        const audio = addAudio(
+                    "assets/audio/song.mp3"
+                    );
+
+        audio.play().catch(() => {});
+        audio.addEventListener("ended", birthdayWishFlow);
 
 
         // thử tự phát
@@ -725,7 +726,7 @@ async function handleAnswer(text) {
         await wait(2000);
 
         addMessage(
-            "💨 Thổi nến đi!",
+            "thổi nến thoai",
             "them"
         );
 
